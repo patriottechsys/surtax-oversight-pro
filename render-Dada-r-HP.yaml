@@ -11,6 +11,9 @@ services:
         value: "3.11.6"
       - key: SECRET_KEY
         generateValue: true
+      # ANTHROPIC_API_KEY: value comes from Key Vault secret Demo-Apps-Share-API-Key (kv-demo-apps-shared); set it in the Render dashboard.
+      - key: ANTHROPIC_API_KEY
+        sync: false
       - key: SURTAX_COUNTY
         value: marion
       - key: FLASK_ENV

@@ -127,7 +127,7 @@ def ask_claude(question: str, cursor, conversation_history: Optional[List] = Non
         messages.append({'role': 'user', 'content': question})
 
         response = client.messages.create(
-            model='claude-sonnet-4-20250514',
+            model='claude-sonnet-5-5',
             max_tokens=1024,
             system=system,
             messages=messages,

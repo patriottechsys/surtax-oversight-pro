@@ -98,17 +98,27 @@ This project consolidates:
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `SECRET_KEY` | Yes | Flask session secret |
-| `ANTHROPIC_API_KEY` | No | Enables AI-powered chat |
+| `ANTHROPIC_API_KEY` | No | Enables AI-powered chat (shared key, see below) |
 | `SURTAX_COUNTY` | No | County name (default: marion) |
 
 ### Claude AI Chat
 
-Set `ANTHROPIC_API_KEY` in `.env` to enable AI-powered Q&A. The chat service injects portfolio data context into each request, enabling questions like:
+Set `ANTHROPIC_API_KEY` in `.env` to enable AI-powered Q&A. The model is `claude-sonnet-5-5` (Claude Sonnet 5.5). The chat service injects portfolio data context into each request, enabling questions like:
 - "What is the overall budget status?"
 - "Which projects are delayed and by how much?"
 - "Summarize vendor performance"
 
 Without the API key, the chat falls back to a helpful message.
+
+### LLM API key
+
+The key is the shared secret `Demo-Apps-Share-API-Key` in Azure Key Vault `kv-demo-apps-shared` (subscription "Demo Apps"). Fetch it with:
+
+```bash
+az keyvault secret show --vault-name kv-demo-apps-shared --name Demo-Apps-Share-API-Key --subscription "Demo Apps" --query value -o tsv
+```
+
+Put the value in `ANTHROPIC_API_KEY` in `.env` locally, or in the Render dashboard when deployed. Never commit it.
 
 ## Tech Stack
 
